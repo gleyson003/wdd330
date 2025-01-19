@@ -3,8 +3,10 @@ export function qs(selector, parent = document) {
 }
 
 export function getLocalStorage(key) {
-  return JSON.parse(localStorage.getItem(key));
+  const data = JSON.parse(localStorage.getItem(key));
+  return data ? JSON.parse(data) : [];
 }
+
 export function setLocalStorage(key, data) {
   localStorage.setItem(key, JSON.stringify(data));
 }
