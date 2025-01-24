@@ -33,6 +33,24 @@ export function renderListWithTemplate(
   parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
 }
 
+export function renderWithTemplate(
+  template,
+  parent,
+  data,
+  callback
+) {
+  if(callback) {
+    callback(data);
+  }
+}
+
+export async function loadHeaderFooter(path) {
+  const html = await fetch(path).then(convertToText);
+  const template = document.createElement('template');
+  template.innerHTML = html;
+  return template
+}
+
 export function setClick(selector, callback) {
   qs(selector).addEventListener("touchend", (event) => {
     event.preventDefault();
